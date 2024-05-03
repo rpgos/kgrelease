@@ -1,7 +1,12 @@
+import { fetchAlbums } from "@/utils/api";
 
 
-export default function Home() {
+export default async function Home() {
+  const albums = await fetchAlbums()
+  
+  const lastReleaseDate = albums.items[0].release_date
+
   return (
-    <div>How long has been since King Gizzard & the Lizard Wizard released an album? </div>
+    <div>Last release on {lastReleaseDate}</div>
   );
 }
