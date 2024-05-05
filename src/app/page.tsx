@@ -30,7 +30,7 @@ export default async function Home() {
           width={130}
         />
         <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
-          What else is there?
+          What else is out there?
         </Link>
       </>
     );

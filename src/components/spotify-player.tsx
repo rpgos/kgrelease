@@ -4,7 +4,7 @@ import { getRandomAlbum } from '@/utils/getRandomAlbum'
 import React, { useState } from 'react'
 
 export default function SpotifyPlayer() {
-  const [album, setAlbum] = useState(getRandomAlbum())
+  const [album, setAlbum] = useState('5LdJz37QiPZ1kFpIva1twi')
 
   const getAnotherAlbum = (): void => {
     let nextAlbum = getRandomAlbum()
