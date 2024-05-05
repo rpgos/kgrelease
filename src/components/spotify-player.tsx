@@ -1,0 +1,24 @@
+'use client'
+
+import { getRandomAlbum } from '@/utils/getRandomAlbum'
+import React, { useState } from 'react'
+
+export default function SpotifyPlayer() {
+  const [album, setAlbum] = useState(getRandomAlbum())
+
+  const getAnotherAlbum = (): void => {
+    setAlbum(getRandomAlbum())
+  }
+
+  return (
+    <>
+      <iframe src={`https://open.spotify.com/embed/album/${album}`} width="326" height="445" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <button
+        className="text-amber-400 mt-2 underline-offset-4 underline"
+        onClick={getAnotherAlbum}
+      >
+        Another album
+      </button>
+    </>
+  )
+}
