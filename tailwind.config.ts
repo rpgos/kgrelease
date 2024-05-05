@@ -18,9 +18,15 @@ const config: Config = {
           '0%': { transform: 'translateX(-65vw)' },
           '100%': { transform: 'translateX(55vw)' },
         },
+        rotate: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
       animation: {
         'cross-screen': 'cross 10s linear 1 2s',
+        'spin-slow': 'spin 10s linear infinite',
+        'spin-slow-reverse': 'spin 10s linear infinite reverse',
       }
     },
   },
