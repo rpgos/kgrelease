@@ -18,7 +18,8 @@ export default async function Home() {
           <div className="w-full h-full bg-black flex flex-col content-center justify-evenly items-center rounded relative">
             <h1 className={`${myFont.className} text-4xl text-amber-400`}>How long has it been?</h1>
             <div className="flex flex-col rounded bg-amber-200 p-2 font-mono justify-evenly gap-2 z-20">
-              <h2 className="text-2xl">{Math.floor(timePassed / (1000 * 60 * 60 * 24))} days since</h2>
+              <h2 className="text-2xl font-bold">{Math.floor(timePassed / (1000 * 60 * 60 * 24))} days</h2>
+              since
               <Image className="rounded" src={lastAlbum.images[0].url} alt="album cover" width={310} height={310} />
               <div className="flex flex-col">
                 <span className="font-bold">{lastAlbum.name}</span>
