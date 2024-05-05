@@ -13,6 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        cross: {
+          '0%': { transform: 'translateX(-65vw)' },
+          '100%': { transform: 'translateX(55vw)' },
+        },
+      },
+      animation: {
+        'cross-screen': 'cross 10s linear 1 2s',
+      }
     },
   },
   plugins: [],
