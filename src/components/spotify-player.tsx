@@ -7,12 +7,22 @@ export default function SpotifyPlayer() {
   const [album, setAlbum] = useState(getRandomAlbum())
 
   const getAnotherAlbum = (): void => {
-    setAlbum(getRandomAlbum())
+    let nextAlbum = getRandomAlbum()
+    while(nextAlbum === album) {
+      nextAlbum = getRandomAlbum()
+    }
+
+    setAlbum(nextAlbum)
   }
 
   return (
     <>
-      <iframe src={`https://open.spotify.com/embed/album/${album}`} width="326" height="445" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <iframe
+        src={`https://open.spotify.com/embed/album/${album}`}
+        width="326"
+        height="445"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy" />
       <button
         className="text-amber-400 mt-2 underline-offset-4 underline"
         onClick={getAnotherAlbum}
