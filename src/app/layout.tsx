@@ -36,6 +36,11 @@ export default function RootLayout({
               height={130}
               alt="Nonagon"
             />
+            <img
+              src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHpubG9xZTVxeDluaTl6Z2s3YTJ6eG1veDIxNG42aTc4N3V1eHRxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kc6BdWsEeIBevFPS2T/giphy.gif"
+              className="absolute animate-cross-screen z-10"
+              width={130}
+            />
             <Analytics />
           </div>
         </main>

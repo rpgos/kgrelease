@@ -10,7 +10,7 @@ export default async function RecommendationsPage() {
     
     return (
       <div className="flex flex-col justify-around h-full items-center">
-        <h1 className={`${davidaFont.className} text-4xl text-amber-400`}>How long has it been?</h1>
+        <h1 className={`${davidaFont.className} text-4xl text-amber-400`}>Listen to something else in the meantime</h1>
         <div className="z-20 flex flex-col items-center">
           <SpotifyPlayer />
         </div>

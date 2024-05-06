@@ -26,11 +26,6 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        <img
-          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHpubG9xZTVxeDluaTl6Z2s3YTJ6eG1veDIxNG42aTc4N3V1eHRxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kc6BdWsEeIBevFPS2T/giphy.gif"
-          className="absolute animate-cross-screen z-10"
-          width={130}
-        />
         <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
           What else is out there?
         </Link>
