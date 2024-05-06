@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { davidaFont } from "./fonts";
 import Link from "next/link";
+import Custom500 from "../pages/500";
 
 
 export default async function Home() {
@@ -32,6 +33,6 @@ export default async function Home() {
       </div>
     );
   } catch(error) {
-    return notFound()
+    return Custom500()
   }
 }
