@@ -14,7 +14,7 @@ async function getToken(): Promise<string> {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64')),
     },
-    next: { revalidate: 86_400 }, // one day
+    next: { revalidate: 21_600 }, // six hours
   });
 
   const res = await response.json()
@@ -28,7 +28,7 @@ export async function fetchAlbums(): Promise<SpotifyAlbum[]> {
     const response = await fetch("https://api.spotify.com/v1/artists/6XYvaoDGE0VmRt83Jss9Sn/albums?limit=5", {
       method: 'GET',
       headers: { 'Authorization': 'Bearer ' + accessToken },
-      next: { revalidate: 86_400 } // one day
+      next: { revalidate: 21_600 }, // six hours
     });
   
     const res = await response.json()
