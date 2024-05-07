@@ -14,7 +14,7 @@ async function getToken(): Promise<string> {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64')),
     },
-    next: { revalidate: 21_600 }, // six hours
+    next: { revalidate: 20_300 }, // 5h30
   });
 
   const res = await response.json()
