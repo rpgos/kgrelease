@@ -1,6 +1,4 @@
-import { fetchAlbums } from "@/utils/api";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import { davidaFont } from "../fonts";
 import Link from "next/link";
 import SpotifyPlayer from "@/components/spotify-player";

@@ -1,35 +1,47 @@
 'use client'
 
-import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { OnApproveBraintreeActions, OnApproveBraintreeData, PayPalButtons, PayPalCardFieldCardFieldData, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Link from "next/link";
-import { useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 
 export default function Modal() {
   const [paypalSuccess, setPaypalSuccess] = useState(false)
+  const [album, setAlbum] = useState('')
+  const albumRef = useRef(album)
 
-  const paypalCreateOrder = async () => {
-    try {
-      const response = await fetch('/api/paypal/create', { method: 'POST' })
-      const { data } = await response.json()
-      
-      return data.order.id
-    } catch (err) {
-      console.log(err)
-      return ''
+  const paypalCreateOrder = async (): Promise<string> => {
+    const response = await fetch('/api/paypal/create', { method: 'POST', body: new URLSearchParams({ album: albumRef.current }) })
+    const { data, message, success } = await response.json()
+
+    if(!success) {
+      throw new Error(message)
     }
+
+    return data.order.id
   }
 
-  const paypalCaptureOrder = async (orderId: string) => {
+  const paypalCaptureOrder = async (data: { orderID: string }, _actions: any) => {
     const response = await fetch('/api/paypal/capture', {
       method: 'POST',
       body: new URLSearchParams({
-      'orderId': orderId,
+      'orderId': data.orderID,
       })
     })
-    const { data } = await response.json()
+    const { message, success }  = await response.json()
 
-    return data
+    if (success) {
+      setPaypalSuccess(true)
+      toast.success(message)
+    } else {
+      toast.error(message)
+    }
+  }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    albumRef.current = event.target.value
+    setAlbum(event.target.value)
   }
 
   return (
@@ -39,7 +51,7 @@ export default function Modal() {
         <div className="flex flex-col items-center gap-8">
           <p className="text-amber-400 font-mono">
             You can add your album to the recommendations for just 2€!<br/><br/>
-            All you need to do is sending me either the Spotify link
+            All you need to do is sending us either the Spotify link
             or the name of the band and album.
           </p>
           {
@@ -51,25 +63,25 @@ export default function Modal() {
                 intent: 'capture',
               }}
             >
+              <input
+                className="rounded p-2"
+                type="text"
+                placeholder="Spotify link or Album name"
+                id="album"
+                name="album"
+                value={album}
+                onChange={handleChange} />
               <PayPalButtons 
                 style={{
                   color: 'gold',
-                  shape: 'rect',
+                  shape: 'pill',
                   label: 'pay',
-                  height: 50
+                  height: 50,
                 }}
-                createOrder={async (data, actions) => {
-                  let order_id = await paypalCreateOrder()
-                  return order_id
-                }}
-                onApprove={async (data, actions) => {
-                  const { message, success } = await paypalCaptureOrder(data.orderID)
-                  console.log(message)
-                  if (success) {
-                    setPaypalSuccess(false)
-                  } else {
-                    
-                  }
+                createOrder={paypalCreateOrder}
+                onApprove={paypalCaptureOrder}
+                onError={(err) => {
+                  toast.error(err.message as string)
                 }}
               />
             </PayPalScriptProvider>

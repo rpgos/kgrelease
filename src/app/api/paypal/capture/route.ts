@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
   const orderId = body.get('orderId')
 
   if(!orderId) {
-    return NextResponse.json({ message: 'Please Pprovide orderId', success: false }, { status: 400 })
+    return NextResponse.json({ message: 'Please provide orderId', success: false }, { status: 400 })
   }
 
   //Capture order to complete payment
@@ -22,5 +22,5 @@ export async function POST(req: NextRequest) {
 
   // Update order in DB
 
-  return NextResponse.json({ message: 'Paid successfuly! Thank you!', success: true, data: { order: response.result } })
+  return NextResponse.json({ message: "Paid successfuly! We'll add your album shortly Thank you!", success: true, data: { order: response.result } })
 }
