@@ -1,3 +1,4 @@
+import { prisma } from "@/db";
 import client from "@/utils/paypal"
 import { NextRequest, NextResponse } from "next/server";
 const paypal = require('@paypal/checkout-server-sdk')
@@ -20,7 +21,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "Paypal couldn't capture order", success: false }, { status: 400 })
   }
 
-  // Update order in DB
+  await prisma.order.update({
+    where: { paypalOrderId: response.result.id },
+    data: { email: response.result.payment_source.paypal.email_address }
+  })
 
-  return NextResponse.json({ message: "Paid successfuly! We'll add your album shortly Thank you!", success: true, data: { order: response.result } })
+  return NextResponse.json({ message: "Paid successfuly! We'll add your album shortly. Thank you!", success: true, data: { order: response.result } })
 }

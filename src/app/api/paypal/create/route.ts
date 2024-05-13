@@ -1,6 +1,9 @@
+import { prisma } from "@/db";
 import client from "@/utils/paypal"
 import { NextRequest, NextResponse } from "next/server";
 const paypal = require('@paypal/checkout-server-sdk')
+
+const ORDER_AMOUNT = 2
 
 export async function POST(req: NextRequest) {
   const body = await req.formData();
@@ -21,7 +24,7 @@ export async function POST(req: NextRequest) {
         {
           amount: {
             currency_code: 'EUR',
-            value: '2.00',
+            value: ORDER_AMOUNT,
           },
         },
       ],
@@ -32,7 +35,13 @@ export async function POST(req: NextRequest) {
       return new NextResponse("Paypal Error trying to create order", { status: 500 })
     }
 
-    // Create order in DB
+    await prisma.order.create({
+      data: {
+        paypalOrderId: response.result.id,
+        amount: ORDER_AMOUNT,
+        album: album as string,
+      }
+    })
 
     return NextResponse.json({ message: 'Order created on Paypal', success: true, data: { order: response.result } })
   } 
