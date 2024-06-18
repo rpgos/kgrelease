@@ -1,6 +1,6 @@
 'use client'
 
-import { OnApproveBraintreeActions, OnApproveBraintreeData, PayPalButtons, PayPalCardFieldCardFieldData, PayPalScriptProvider } from "@paypal/react-paypal-js";
+// import { OnApproveBraintreeActions, OnApproveBraintreeData, PayPalButtons, PayPalCardFieldCardFieldData, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Link from "next/link";
 import { ChangeEvent, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -44,6 +44,17 @@ export default function Modal() {
     setAlbum(event.target.value)
   }
 
+  const sendAlbum = async () => {
+    const response = await fetch('/api/albums', { method: 'POST', body: new URLSearchParams({ albumLink: album }) })
+    const { message, success } = await response.json()
+    
+    if (success) {
+      toast.success(message)
+    } else {
+      toast.error(message)
+    }
+  }
+
   return (
     <dialog
       className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-50 z-50 overflow-auto backdrop-blur flex justify-center items-center">
@@ -55,13 +66,14 @@ export default function Modal() {
             We update the list weekly.
           </p>
           <input
-                className="rounded p-2"
-                type="text"
-                placeholder="Spotify link or Album name"
-                id="album"
-                name="album"
-                value={album}
-                onChange={handleChange} />
+            className="rounded p-2"
+            type="text"
+            placeholder="Spotify link or Album name"
+            id="album"
+            name="album"
+            value={album}
+            onChange={handleChange}
+          />
           {/* {
             !paypalSuccess &&
             <PayPalScriptProvider
@@ -88,11 +100,18 @@ export default function Modal() {
             </PayPalScriptProvider>
           } */}
           
-          <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
-            {
-              'Nope'
-            }
-          </Link>
+          <div className="flex justify-center items-center gap-3">
+            <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
+              {
+                'Nope'
+              }
+            </Link>
+            <button className="text-black bg-amber-400 focus:bg-amber-200 hover:bg-amber-200 p-4 rounded-full font-mono" onClick={sendAlbum}>
+              {
+                'Send'
+              }
+            </button>
+          </div>
         </div>
       </div>
     </dialog>
