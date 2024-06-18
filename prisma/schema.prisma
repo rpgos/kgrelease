@@ -10,13 +10,18 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_PRISMA_URL")
 }
 
 model Order {
   id Int @id @default(autoincrement())
-  paypalOrderId String @unique
-  amount Float
+  paypalOrderId String? @unique
+  amount Float?
   email String?
   album String
+}
+
+model Album {
+  id Int @id @default(autoincrement())
+  link String
 }
