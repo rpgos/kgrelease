@@ -7,37 +7,37 @@ import { toast } from "react-toastify";
 
 
 export default function Modal() {
-  const [paypalSuccess, setPaypalSuccess] = useState(false)
+  // const [paypalSuccess, setPaypalSuccess] = useState(false)
   const [album, setAlbum] = useState('')
   const albumRef = useRef(album)
 
-  const paypalCreateOrder = async (): Promise<string> => {
-    const response = await fetch('/api/paypal/create', { method: 'POST', body: new URLSearchParams({ album: albumRef.current }) })
-    const { data, message, success } = await response.json()
+  // const paypalCreateOrder = async (): Promise<string> => {
+  //   const response = await fetch('/api/paypal/create', { method: 'POST', body: new URLSearchParams({ album: albumRef.current }) })
+  //   const { data, message, success } = await response.json()
 
-    if(!success) {
-      throw new Error(message)
-    }
+  //   if(!success) {
+  //     throw new Error(message)
+  //   }
 
-    return data.order.id
-  }
+  //   return data.order.id
+  // }
 
-  const paypalCaptureOrder = async (data: { orderID: string }, _actions: any) => {
-    const response = await fetch('/api/paypal/capture', {
-      method: 'POST',
-      body: new URLSearchParams({
-      'orderId': data.orderID,
-      })
-    })
-    const { message, success }  = await response.json()
+  // const paypalCaptureOrder = async (data: { orderID: string }, _actions: any) => {
+  //   const response = await fetch('/api/paypal/capture', {
+  //     method: 'POST',
+  //     body: new URLSearchParams({
+  //     'orderId': data.orderID,
+  //     })
+  //   })
+  //   const { message, success }  = await response.json()
 
-    if (success) {
-      setPaypalSuccess(true)
-      toast.success(message)
-    } else {
-      toast.error(message)
-    }
-  }
+  //   if (success) {
+  //     setPaypalSuccess(true)
+  //     toast.success(message)
+  //   } else {
+  //     toast.error(message)
+  //   }
+  // }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     albumRef.current = event.target.value
@@ -50,11 +50,19 @@ export default function Modal() {
       <div className="bg-black m-auto p-4 rounded max-w-[85vw]">
         <div className="flex flex-col items-center gap-8">
           <p className="text-amber-400 font-mono">
-            You can add your album to the recommendations for just 2€!<br/><br/>
-            All you need to do is sending us either the Spotify link
-            or the name of the band and album.
+            You can add your album to the recommendations!<br/><br/>
+            All you need to do is send the Spotify album link.
+            We update the list weekly.
           </p>
-          {
+          <input
+                className="rounded p-2"
+                type="text"
+                placeholder="Spotify link or Album name"
+                id="album"
+                name="album"
+                value={album}
+                onChange={handleChange} />
+          {/* {
             !paypalSuccess &&
             <PayPalScriptProvider
               options={{
@@ -63,14 +71,7 @@ export default function Modal() {
                 intent: 'capture',
               }}
             >
-              <input
-                className="rounded p-2"
-                type="text"
-                placeholder="Spotify link or Album name"
-                id="album"
-                name="album"
-                value={album}
-                onChange={handleChange} />
+             
               <PayPalButtons 
                 style={{
                   color: 'gold',
@@ -85,11 +86,11 @@ export default function Modal() {
                 }}
               />
             </PayPalScriptProvider>
-          }
+          } */}
           
           <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
             {
-              paypalSuccess ? 'Thank you!' : 'Nope'
+              'Nope'
             }
           </Link>
         </div>
