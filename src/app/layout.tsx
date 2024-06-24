@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import { Analytics } from '@vercel/analytics/react'
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,6 +43,7 @@ export default function RootLayout({
               className="absolute animate-cross-screen z-10"
               width={130}
             />
+            <ToastContainer theme="colored" />
             <Analytics />
           </div>
         </main>
