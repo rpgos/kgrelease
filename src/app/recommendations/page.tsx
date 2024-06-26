@@ -22,9 +22,9 @@ export default async function RecommendationsPage({ searchParams }: SearchParamP
           <Link href="/" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
             Back
           </Link>
-          <Link href="/recommendations?join=true" className="text-black bg-amber-400 focus:bg-amber-200 hover:bg-amber-200 p-4 rounded-full font-mono">
+          {/* <Link href="/recommendations?join=true" className="text-black bg-amber-400 focus:bg-amber-200 hover:bg-amber-200 p-4 rounded-full font-mono">
             Want your album here?
-          </Link>
+          </Link> */}
         </div>
         {show && <Modal />}
       </div>

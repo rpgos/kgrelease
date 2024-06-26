@@ -12,7 +12,7 @@
   "dependencies": {
     "@paypal/checkout-server-sdk": "^1.0.3",
     "@paypal/react-paypal-js": "^8.3.0",
-    "@prisma/client": "^5.13.0",
+    "@prisma/client": "^5.16.0",
     "@vercel/analytics": "^1.2.2",
     "next": "14.2.3",
     "prisma": "^5.13.0",
