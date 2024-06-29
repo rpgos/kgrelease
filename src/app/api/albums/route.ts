@@ -19,6 +19,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "Thank you! We'll add your album shortly.", success: true, data: { albumLink } })
 
   } catch(error) {
-    return NextResponse.json({ message: 'Please provide the album link', success: false }, { status: 400 })
+    return NextResponse.json({ message: 'The album could not be added. Please try again later.', success: false }, { status: 400 })
   }
 }
