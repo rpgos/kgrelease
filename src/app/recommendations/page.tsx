@@ -13,7 +13,7 @@ export default async function RecommendationsPage({ searchParams }: SearchParamP
 
   try {
     return (
-      <div className="flex flex-col justify-around h-full items-center">
+      <div className="flex flex-col justify-around h-full items-center pb-[50px]">
         <h1 className={`${davidaFont.className} text-4xl text-amber-400`}>Listen to something else in the meantime</h1>
         <div className="z-20 flex flex-col items-center">
           <SpotifyPlayer />

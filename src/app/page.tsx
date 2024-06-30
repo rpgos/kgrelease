@@ -13,7 +13,7 @@ export default async function Home() {
     const timePassed = Date.now() - Date.parse(lastAlbum.release_date)
     
     return (  
-      <div className="flex flex-col justify-around h-full items-center">
+      <div className="flex flex-col justify-around h-full items-center pb-[50px]">
         <h1 className={`${davidaFont.className} text-4xl text-amber-400`}>How long has it been?</h1>
         <div className="z-20">
           <div className="flex flex-col rounded bg-amber-200 p-2 font-mono justify-evenly gap-2">
