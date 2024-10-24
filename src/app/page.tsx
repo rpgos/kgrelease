@@ -3,6 +3,7 @@ import Image from "next/image";
 import { davidaFont } from "./fonts";
 import Link from "next/link";
 import Custom500 from "../pages/500";
+import Notification from "@/components/notification";
 
 
 export default async function Home() {
@@ -29,6 +30,7 @@ export default async function Home() {
         <Link href="/recommendations" className="text-amber-400 border-amber-400 focus:text-black hover:text-black focus:bg-amber-400 hover:bg-amber-400 border p-4 rounded-full font-mono">
           What else is out there?
         </Link>
+        <Notification message="Check out the recommendations page! You can add your band to the list! 📀" />
       </div>
     );
   } catch(error) {
