@@ -44,8 +44,8 @@ export default function RootLayout({
               className="absolute animate-cross-screen z-10"
               width={130}
             />
-            
-            <KofiFloatingButton username="rodribuilds" text="Coffee me!" />
+
+            <KofiFloatingButton username="rodribuilds" background="#fbbf24" textColor="#323842" text="Coffee?" />
             <ToastContainer theme="colored" />
             <Analytics />
           </div>
