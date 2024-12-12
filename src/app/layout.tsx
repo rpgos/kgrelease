@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Analytics } from '@vercel/analytics/react'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-import KofiButton from "@/components/ko-fi-button";
+import { KofiFloatingButton } from "kofi-react-widget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,12 +13,6 @@ export const metadata: Metadata = {
   title: "King Gizzard's Last Release",
   description: "How long has been since King Gizzard & the Lizard Wizard released an album?",
 };
-
-declare global {
-  interface Window {
-    kofiWidgetOverlay?: any;
-  }
-}
 
 export default function RootLayout({
   children,
@@ -50,7 +44,8 @@ export default function RootLayout({
               className="absolute animate-cross-screen z-10"
               width={130}
             />
-            <KofiButton />
+            
+            <KofiFloatingButton username="rodribuilds" text="Coffee me!" />
             <ToastContainer theme="colored" />
             <Analytics />
           </div>
