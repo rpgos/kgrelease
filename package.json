@@ -17,6 +17,7 @@
     "@vercel/analytics": "^1.2.2",
     "kofi-react-widget": "^1.0.3",
     "next": "^14.2.20",
+    "next-auth": "^5.0.0-beta.25",
     "prisma": "^5.13.0",
     "react": "^18",
     "react-dom": "^18",
