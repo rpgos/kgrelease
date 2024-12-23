@@ -13,10 +13,12 @@
   "dependencies": {
     "@auth/core": "^0.37.4",
     "@auth/prisma-adapter": "^2.7.4",
+    "@nextui-org/react": "^2.6.8",
     "@paypal/checkout-server-sdk": "^1.0.3",
     "@paypal/react-paypal-js": "^8.3.0",
     "@prisma/client": "^5.16.0",
     "@vercel/analytics": "^1.2.2",
+    "framer-motion": "^11.15.0",
     "kofi-react-widget": "^1.0.3",
     "next": "^15.1.2",
     "next-auth": "^5.0.0-beta.25",

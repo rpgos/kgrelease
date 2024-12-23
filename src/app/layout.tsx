@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { KofiFloatingButton } from "kofi-react-widget";
+import {NextUIProvider} from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} w-full text-center`}>
+      <body className={`${inter.className} min-h-screen w-full text-center`}>
         <main role="main" className="w-full p-1 h-screen bg-amber-400">
           <div className="w-full h-full bg-black flex flex-col content-center justify-evenly items-center rounded relative">
-            {children}
+            <NextUIProvider className="h-full">
+              {children}
+            </NextUIProvider>
             <Image
               src="/icon.png"
               className="absolute animate-spin-slow z-0 left-[15vw]"
