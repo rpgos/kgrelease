@@ -9,10 +9,7 @@ const nextConfig = {
         pathname: '/image/**',
       },
     ],
-  },
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
-  },
+  }
 };
 
 export default nextConfig;
