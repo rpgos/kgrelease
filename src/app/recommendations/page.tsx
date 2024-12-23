@@ -5,11 +5,11 @@ import SpotifyPlayer from "@/components/spotify-player";
 import Modal from "@/components/modal";
 
 interface SearchParamProps {
-  searchParams: Record<string, string> | null | undefined
+  searchParams: Promise<Record<string, string> | null | undefined>
 }
 
 export default async function RecommendationsPage({ searchParams }: SearchParamProps) {
-  const show = searchParams?.join
+  const showModal = (await searchParams)?.join
 
   try {
     return (
@@ -26,7 +26,7 @@ export default async function RecommendationsPage({ searchParams }: SearchParamP
             Want your album here?
           </Link>
         </div>
-        {show && <Modal />}
+        {showModal && <Modal />}
       </div>
     );
   } catch(error) {
