@@ -10,7 +10,7 @@ interface CreateAlbumFormState {
   }
 }
 
-export async function createAlbum(formData: FormData): Promise<CreateAlbumFormState> {
+export async function createAlbum(formState: CreateAlbumFormState, formData: FormData): Promise<CreateAlbumFormState> {
   const session = await auth()
 
   if(!session || !session.user) {
