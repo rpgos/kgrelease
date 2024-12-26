@@ -13,7 +13,7 @@ export default function AlbumPopover() {
   return (
     <Popover placement="bottom">
       <PopoverTrigger>
-        <Button color="warning">Add Album</Button>
+        <Button className="min-h-[40px]" color="warning">Add Album</Button>
       </PopoverTrigger>
       <PopoverContent className="p-4">
         <Form action={action} className="gap-4">
