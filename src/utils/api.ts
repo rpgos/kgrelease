@@ -39,3 +39,24 @@ export async function fetchAlbums(): Promise<SpotifyAlbum[]> {
     throw new Error('Could not get albums');
   }
 }
+
+export async function fetchAlbumFromLink(link: string): Promise<SpotifyAlbum> {
+  const albumId = (link.match(/\/album\/([a-zA-Z0-9]+)/) || [])[1]
+  
+  if(!albumId) throw new Error('Invalid album link')
+
+  try {
+    const accessToken = await getToken()
+    const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ' + accessToken },
+    });
+  
+    const res = await response.json()
+    console.log(res)
+
+    return res
+  } catch(error) {
+    throw new Error('Could not get album.');
+  }
+}

@@ -2,6 +2,9 @@
 
 import { auth } from "@/auth";
 import { prisma } from "@/db";
+import { fetchAlbumFromLink } from "@/utils/api";
+import { link } from "fs";
+import { z } from "zod"
 
 interface CreateAlbumFormState {
   success?: boolean
@@ -11,6 +14,12 @@ interface CreateAlbumFormState {
   }
 }
 
+const createAlbumSchema = z.object({
+  link: z.string().regex(/https:\/\/open\.spotify\.com\/album\/[a-zA-Z0-9]+/)
+})
+
+// https://open.spotify.com/album/7GByk3zU16geQvds0ZkFSe?si=RO0mtfvQRnO-vCiyQByN9A
+
 export async function createAlbum(formState: CreateAlbumFormState, formData: FormData): Promise<CreateAlbumFormState> {
   const session = await auth()
 
@@ -18,12 +27,21 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
     return { errors: { _form: ['You must be signed in to do this.'] } }
   }
 
-  const link = formData.get('link') as string;
+  const res = createAlbumSchema.safeParse({ link: formData.get('link') });
+  
+  if(!res.success) {
+    return {
+      errors: res.error.flatten().fieldErrors
+    }
+  }
 
+  
   try {
+    // Fetch album from Spotify API
+    const spotifyAlbum = await fetchAlbumFromLink(res.data.link)
     const album = await prisma.album.create({
       data: {
-        link,
+        link: res.data.link,
       }
     });
 

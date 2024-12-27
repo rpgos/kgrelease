@@ -6,4 +6,7 @@ export interface SpotifyAlbum {
     height: string
     width: string
   }[]
+  artists: {
+    name: string
+  }[]
 }
