@@ -1,7 +1,7 @@
 'use client'
 
 import { createAlbum } from "@/actions/create-album";
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import {Button} from "@nextui-org/button";
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/popover";
 import {Form} from "@nextui-org/form";
@@ -9,9 +9,17 @@ import { Input } from "@nextui-org/input";
 
 export default function AlbumPopover() {
   const [formState, action] = useActionState(createAlbum, { errors: {} });
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (formState.success) {
+      setIsOpen(false);
+      formState.success = false;
+    }
+  }, [formState.success]);
 
   return (
-    <Popover placement="bottom">
+    <Popover placement="bottom" isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>
       <PopoverTrigger>
         <Button className="min-h-[40px]" color="warning">Add Album</Button>
       </PopoverTrigger>
@@ -25,7 +33,7 @@ export default function AlbumPopover() {
             placeholder="Album link"
             isInvalid={!!formState.errors.link}
             errorMessage={formState.errors.link}
-             />
+          />
           <Button color="primary" type="submit">Save</Button>
           {
             formState.errors._form &&

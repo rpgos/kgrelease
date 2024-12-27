@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/db";
 
 interface CreateAlbumFormState {
+  success?: boolean
   errors: {
     link?: string[],
     _form?: string[]
@@ -27,7 +28,6 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
     });
 
     console.log("Album created: ", album)
-
   } catch (error) {
     if(error instanceof Error) {
       return {
@@ -38,5 +38,5 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
     }
   }
 
-  return { errors: {} }
+  return { success: true,  errors: {} }
 }
