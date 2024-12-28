@@ -1,4 +1,5 @@
 export interface SpotifyAlbum {
+  id: string
   name: string
   release_date: string
   images: {
@@ -7,6 +8,7 @@ export interface SpotifyAlbum {
     width: string
   }[]
   artists: {
+    id: string
     name: string
   }[]
 }

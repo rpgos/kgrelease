@@ -37,11 +37,18 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
 
   
   try {
-    // Fetch album from Spotify API
     const spotifyAlbum = await fetchAlbumFromLink(res.data.link)
     const album = await prisma.album.create({
       data: {
         link: res.data.link,
+        name: spotifyAlbum.name,
+        spotifyId: spotifyAlbum.id,
+        artist: {
+          create: {
+            name: spotifyAlbum.artists[0].name,
+            spotifyId: spotifyAlbum.artists[0].id
+          }
+        }
       }
     });
 
