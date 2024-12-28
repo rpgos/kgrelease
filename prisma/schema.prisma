@@ -25,6 +25,17 @@ model Order {
 model Album {
   id Int @id @default(autoincrement())
   link String
+  name String
+  spotifyId String
+  artistId Int
+  artist Artist @relation(fields: [artistId], references: [id])
+}
+
+model Artist {
+  id Int @id @default(autoincrement())
+  name String
+  spotifyId String
+  albums Album[]
 }
 
 model User {
