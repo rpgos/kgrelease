@@ -16,7 +16,7 @@ export default function AlbumPopover() {
     if (formState.success) {
       setIsOpen(false);
       formState.success = false;
-      toast("Album added");
+      toast.success("Album added");
     }
   }, [formState.success]);
 
