@@ -3,6 +3,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/db";
 import { fetchAlbumFromLink } from "@/utils/api";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { link } from "fs";
 import { z } from "zod"
 
@@ -44,9 +45,12 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
         name: spotifyAlbum.name,
         spotifyId: spotifyAlbum.id,
         artist: {
-          create: {
-            name: spotifyAlbum.artists[0].name,
-            spotifyId: spotifyAlbum.artists[0].id
+          connectOrCreate: {
+            where: { spotifyId: spotifyAlbum.artists[0].id },
+            create: {
+              name: spotifyAlbum.artists[0].name,
+              spotifyId: spotifyAlbum.artists[0].id
+            }
           }
         }
       }
@@ -54,6 +58,10 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
 
     console.log("Album created: ", album)
   } catch (error) {
+    if(error instanceof PrismaClientKnownRequestError) {
+      return { errors: { _form: ['Problem creating the album. Please try again later'] } }
+    }
+
     if(error instanceof Error) {
       return {
         errors: {
