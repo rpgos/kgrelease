@@ -34,7 +34,7 @@ export default function AlbumList() {
       <h2 className="text-2xl">Album List</h2>
       {
         albums.map((album) => (
-          <AlbumListItem key={album.id} id={album.id} title={album.link} handleDelete={handleDeleteAlbum} />
+          <AlbumListItem key={album.id} album={album} handleDelete={handleDeleteAlbum} />
         ))
       }
     </section>

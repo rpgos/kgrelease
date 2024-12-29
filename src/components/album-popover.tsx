@@ -6,6 +6,7 @@ import {Button} from "@nextui-org/button";
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/popover";
 import {Form} from "@nextui-org/form";
 import { Input } from "@nextui-org/input";
+import { toast } from "react-toastify";
 
 export default function AlbumPopover() {
   const [formState, action] = useActionState(createAlbum, { errors: {} });
@@ -15,6 +16,7 @@ export default function AlbumPopover() {
     if (formState.success) {
       setIsOpen(false);
       formState.success = false;
+      toast("Album added");
     }
   }, [formState.success]);
 
