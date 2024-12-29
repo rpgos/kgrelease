@@ -11,7 +11,7 @@ import {
   Input,
  } from "@nextui-org/react";
 // import { OnApproveBraintreeActions, OnApproveBraintreeData, PayPalButtons, PayPalCardFieldCardFieldData, PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { ChangeEvent, useActionState, useState } from "react";
+import { ChangeEvent, useActionState, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function AlbumModal() {
@@ -49,11 +49,14 @@ export default function AlbumModal() {
   //   }
   // }
 
-  if(formState.success) {
-    onClose()
-    formState.success = false
-    toast("Album added")
-  }
+  useEffect(() => {
+    if(formState.success) {
+      onClose()
+      formState.success = false
+      setAlbum('')
+      toast.success("Album added")
+    }
+  }, [formState.success])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     // albumRef.current = event.target.value
