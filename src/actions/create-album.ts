@@ -54,6 +54,9 @@ export async function createAlbum(formState: CreateAlbumFormState, formData: For
     console.log("Album created: ", album)
   } catch (error) {
     if(error instanceof PrismaClientKnownRequestError) {
+      if (error.code === 'P2002') {
+        return { errors: { _form: ['Album already exists.'] } }
+      }
       return { errors: { _form: ['Problem creating the album. Please try again later'] } }
     }
 
