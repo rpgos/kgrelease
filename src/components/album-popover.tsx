@@ -18,7 +18,7 @@ export default function AlbumPopover() {
       formState.success = false;
       toast.success("Album added");
     }
-  }, [formState.success]);
+  }, [formState]);
 
   return (
     <Popover placement="bottom" isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)}>

@@ -56,7 +56,7 @@ export default function AlbumModal() {
       setAlbum('')
       toast.success("Album added")
     }
-  }, [formState.success])
+  }, [formState])
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     // albumRef.current = event.target.value
