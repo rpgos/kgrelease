@@ -1,3 +1,0 @@
-{
-  "postbuild": "npx prisma migrate deploy"
-}
