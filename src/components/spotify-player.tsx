@@ -2,6 +2,7 @@
 
 import { getAlbums } from '@/actions/get-albums'
 import { getRandomAlbum } from '@/utils/getRandomAlbum'
+import { Link } from '@nextui-org/react'
 import { Album } from '@prisma/client'
 import React, { useEffect, useState } from 'react'
 
@@ -53,12 +54,14 @@ export default function SpotifyPlayer() {
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
           />
-          <button
-            className="text-amber-400 mt-2 underline-offset-4 underline"
-            onClick={getAnotherAlbum}
+          <Link
+            className="text-amber-400 mt-2"
+            onPress={getAnotherAlbum}
+            href="#"
+            underline="always"
           >
             Another album
-          </button>
+          </Link>
         </>
 
       }
