@@ -45,20 +45,15 @@ export async function fetchAlbumFromLink(link: string): Promise<SpotifyAlbum> {
   
   if(!albumId) throw new Error('Invalid album link')
 
-  try {
-    const accessToken = await getToken()
-    const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
-      method: 'GET',
-      headers: { 'Authorization': 'Bearer ' + accessToken },
-    });
-  
-    const res = await response.json()
+  const accessToken = await getToken()
+  const response = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+    method: 'GET',
+    headers: { 'Authorization': 'Bearer ' + accessToken },
+  });
 
-    if(!!res.error) throw Error('There was a problem getting album info. Please try again later.')
+  const res = await response.json()
 
-    return res
-  } catch(error) {
-    console.error('Error fetching album info:', error);
-    throw Error('Could not get album info. Please try again later.')
-  }
+  if(!!res.error) throw Error('Could not get album info. Please try again later.')
+
+  return res
 }
