@@ -13,8 +13,8 @@ export const TrashIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="non
 export default function AlbumListItem({ album, handleDelete}: AlbumListItemProps) {
 
   return (
-    <div className="min-w-[50%] bg-zinc-500 rounded-xl p-4 flex justify-between items-center">
-      <div className="flex flex-col items-start">
+    <div className="w-[50%] bg-zinc-500 rounded-xl p-4 flex justify-between items-center">
+      <div className="flex flex-col text-start">
         <a href={album.link} target="_blank" rel="noreferrer">
           {album.name}
         </a>

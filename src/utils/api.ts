@@ -58,6 +58,7 @@ export async function fetchAlbumFromLink(link: string): Promise<SpotifyAlbum> {
 
     return res
   } catch(error) {
-    throw new Error('Could not get album.');
+    console.error('Error fetching album info:', error);
+    throw Error('Could not get album info. Please try again later.')
   }
 }
