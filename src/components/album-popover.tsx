@@ -9,7 +9,7 @@ import { Input } from "@nextui-org/input";
 import { toast } from "react-toastify";
 
 export default function AlbumPopover() {
-  const [formState, action] = useActionState(createAlbum, { errors: {} });
+  const [formState, action, isPending] = useActionState(createAlbum, { errors: {} });
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function AlbumPopover() {
             isInvalid={!!formState.errors.link}
             errorMessage={formState.errors.link}
           />
-          <Button color="primary" type="submit">Save</Button>
+          <Button isLoading={isPending} color="primary" type="submit">Save</Button>
           {
             formState.errors._form &&
             <div className="rounded p-2 bg-red-200 border border-red-400">
