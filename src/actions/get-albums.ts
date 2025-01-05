@@ -10,5 +10,5 @@ export const getAlbums = cache(async () => {
     }
   })
 
-  return albums
+  return albums.sort(() => Math.random() - 0.5)
 })
