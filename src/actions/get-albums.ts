@@ -10,5 +10,8 @@ export const getAlbums = cache(async () => {
     }
   })
 
-  return albums.sort(() => Math.random() - 0.5)
+  const precious = albums.find(album => album.artist.name === 'Al-Mudawwar')
+  const array = precious ? [precious] : []
+
+  return array.concat(albums.sort(() => Math.random() - 0.5))
 })
