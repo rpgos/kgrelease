@@ -19,7 +19,7 @@
     "@prisma/client": "^6.1.0",
     "@vercel/analytics": "^1.2.2",
     "framer-motion": "^11.15.0",
-    "kofi-react-widget": "^1.0.3",
+    "kofi-react-widget": "^2.1.0",
     "next": "^15.1.2",
     "next-auth": "^5.0.0-beta.25",
     "nodemailer": "^6.9.16",
