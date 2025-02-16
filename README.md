@@ -1,4 +1,4 @@
-## How long has been since King Gizzard & the Lizard Wizard released an album? 
+## How long has it been since King Gizzard & the Lizard Wizard released an album? 
 
 King Gizzard & the Lizard Wizard is highly prolific band and I love them.
 
